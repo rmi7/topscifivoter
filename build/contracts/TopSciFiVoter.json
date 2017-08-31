@@ -1,0 +1,663 @@
+{
+  "contract_name": "TopSciFiVoter",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "begin",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "status",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "movies",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getStatus",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "bids",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "endTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "start",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "movieCount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "movieName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "vote",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "end",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "LogVoteStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "LogVoteEnded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "movieName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "LogNewVote",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "LogWithdrawn",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000805460a060020a60ff0219169055341561001f57600080fd5b5b5b60008054600160a060020a03191633600160a060020a03161790555b600060038190556005805460ff19166001835b02179055505b5b610902806100666000396000f300606060405236156100b75763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631bce6ff381146100bc578063200d2ed2146100e15780633ccfd60b14610118578063404ebf6c1461012d5780634e69d560146101555780638da5cb5b1461018c5780638f98eeda146101bb57806395805dad146101e3578063a1daf326146101fb578063a69beaba14610220578063efbe1c1c1461022d578063f2fde38b14610252575b600080fd5b34156100c757600080fd5b6100cf610273565b60405190815260200160405180910390f35b34156100ec57600080fd5b6100f4610279565b6040518082600281111561010457fe5b60ff16815260200191505060405180910390f35b341561012357600080fd5b61012b610282565b005b341561013857600080fd5b6100cf6004356103f3565b60405190815260200160405180910390f35b341561016057600080fd5b6100f4610416565b6040518082600281111561010457fe5b60ff16815260200191505060405180910390f35b341561019757600080fd5b61019f610480565b604051600160a060020a03909116815260200160405180910390f35b34156101c657600080fd5b6100cf60043561048f565b60405190815260200160405180910390f35b34156101ee57600080fd5b61012b6004356104a1565b005b341561020657600080fd5b6100cf610592565b60405190815260200160405180910390f35b61012b600435610598565b005b341561023857600080fd5b6100cf610813565b60405190815260200160405180910390f35b341561025d57600080fd5b61012b600160a060020a0360043516610819565b005b60015481565b60055460ff1681565b6000600260015b60055460ff16600281111561029a57fe5b1480156102a957506002544210155b156102c457600580546002919060ff19166001835b02179055505b8060028111156102d057fe5b60055460ff1660028111156102e157fe5b146102eb57600080fd5b600160a060020a0333166000908152600660205260408120541161030e57600080fd5b60005460a060020a900460ff161561032557600080fd5b6000805474ff0000000000000000000000000000000000000000191660a060020a178155600160a060020a0333168082526006602052604080832080549390559193509083156108fc0290849051600060405180830381858888f19350505050151561039057600080fd5b33600160a060020a03167fe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c8360405190815260200160405180910390a25b6000805474ff0000000000000000000000000000000000000000191690555b5b5b5050565b600480548290811061040157fe5b906000526020600020900160005b5054905081565b600060015b60055460ff16600281111561042c57fe5b14801561043b57506002544211155b156104485750600161047b565b60025b60055460ff16600281111561045c57fe5b148061046a57506002544211155b156104775750600261047b565b5060005b5b5b90565b600054600160a060020a031681565b60076020526000908152604090205481565b60005433600160a060020a039081169116146104bc57600080fd5b600060015b60055460ff1660028111156104d257fe5b1480156104e157506002544210155b156104fc57600580546002919060ff19166001835b02179055505b80600281111561050857fe5b60055460ff16600281111561051957fe5b1461052357600080fd5b8142811161053057600080fd5b4262278d000181111561054257600080fd5b42600190815560028490556005805460ff191682805b02179055507f90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc897260405160405180910390a15b5b505b505b50565b60035481565b6001805b60055460ff1660028111156105ad57fe5b1480156105bc57506002544210155b156105d757600580546002919060ff19166001835b02179055505b8060028111156105e357fe5b60055460ff1660028111156105f457fe5b146105fe57600080fd5b670de0b6b3a764000034101561061357600080fd5b600160a060020a0333166000908152600860209081526040808320858452909152902054829060ff161561064657600080fd5b60005460a060020a900460ff161561065d57600080fd5b6000805474ff0000000000000000000000000000000000000000191660a060020a1781558381526007602052604090205415156106d1576003546106a890600163ffffffff61087116565b60035560048054600181016106bd838261088b565b916000526020600020900160005b50849055505b6000838152600760205260409020546106f890670de0b6b3a764000063ffffffff61087116565b600084815260076020908152604080832093909355600160a060020a033316825260069052205461073790670de0b6b3a764000063ffffffff61087116565b600160a060020a033316600081815260066020908152604080832094909455600881528382208783529052829020805460ff1916600117905584917f192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde905160405180910390a3670de0b6b3a76400003411156107ea57600160a060020a033316670de0b6b3a763ffff19340180156108fc0290604051600060405180830381858888f1935050505015156107ea57600080fd5b5b5b6000805474ff0000000000000000000000000000000000000000191690555b5b505b5b5050565b60025481565b60005433600160a060020a0390811691161461083457600080fd5b600160a060020a0381161561058f576000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b50565b60008282018381101561088057fe5b8091505b5092915050565b81548183558181151161058a5760008381526020902061058a9181019083016108b5565b5b505050565b61047b91905b808211156108cf57600081556001016108bb565b5090565b905600a165627a7a723058200210bcd72ab4edfbeeda6a9f1941253df95935b082c0eed9644826f896926ec90029",
+  "networks": {
+    "1503999674032": {
+      "events": {
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x30bfc3c6025f9783f549f01c8c3b1004ebe61eac",
+      "updated_at": 1504036004120
+    },
+    "1504037188075": {
+      "events": {
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        },
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xe111999f070609204e86d3a6195102db26ff77fd",
+      "updated_at": 1504047930832
+    },
+    "1504049447127": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xca4a709a05e90eb036c848244040ef2b7f1d2ae1",
+      "updated_at": 1504054210377
+    },
+    "1504054708580": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfd5a15ddbcb6c244170fbaaa3571f77bcf1be7b4",
+      "updated_at": 1504093277230
+    },
+    "1504093347602": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xd7a142fce634ebcd6192b9441d6ef3d9b12e347f",
+      "updated_at": 1504093364930
+    },
+    "1504121338558": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0xf9669ce1aa0587df9d7edf3172e7c6682b4dbe3b06ffc346004b048ab33c4ceb": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteEnded",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xbbad331e55a831385febd7d5f8fa234a65722c7d",
+      "updated_at": 1504140660105
+    },
+    "1504142688392": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0xf9669ce1aa0587df9d7edf3172e7c6682b4dbe3b06ffc346004b048ab33c4ceb": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteEnded",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfec56a850906aafdadf00184c0ac034aeb32bdd4",
+      "updated_at": 1504144396480
+    },
+    "1504144675768": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0xf9669ce1aa0587df9d7edf3172e7c6682b4dbe3b06ffc346004b048ab33c4ceb": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteEnded",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfda905cba69f77f085663e503a63a7d9b7dc672c",
+      "updated_at": 1504147362321
+    },
+    "1504148760744": {
+      "events": {
+        "0x90c0e749f4597b0c85fcda2a56581f630acbb2166a0cb04435c74c2b0abc8972": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteStarted",
+          "type": "event"
+        },
+        "0xf9669ce1aa0587df9d7edf3172e7c6682b4dbe3b06ffc346004b048ab33c4ceb": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "LogVoteEnded",
+          "type": "event"
+        },
+        "0x192fed663ddc1f7b1227f46ff4adaaa54306518dad9571f1e2e2726da5081bde": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "movieName",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogNewVote",
+          "type": "event"
+        },
+        "0xe0535c2eb3e1755a11a8ee1dba6e7b72ea1487e87be0d02fca7c1038eaacbd5c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogWithdrawn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x5fe033338d5560e2adc6a37010f65092add0641c",
+      "updated_at": 1504148794333
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1504148794333
+}
