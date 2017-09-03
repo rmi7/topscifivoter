@@ -61,7 +61,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import * as types from '../store/mutation-types';
+import * as types from '../store/mutationTypes';
 
 export default {
   name: 'topscifi-voter',
