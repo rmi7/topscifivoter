@@ -31,10 +31,15 @@ export default {
     }, 100);
   },
   watchWeb3Account({ dispatch, state, commit }) {
-    setInterval(() => {
+    const web3WatchInterval = setInterval(() => {
       const account = web3.eth.accounts[0];
 
-      if (!account) return;
+      if (!account) {
+        clearInterval(web3WatchInterval);
+        commit(types.CLEAR_ALL);
+        dispatch('initWeb3');
+        return;
+      }
 
       if (account === state.account) return;
 

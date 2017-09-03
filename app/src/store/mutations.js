@@ -89,4 +89,23 @@ export default {
   [types.CLEAR_MOVIENAME](state) {
     state.movieName = '';
   },
+  [types.CLEAR_ALL](state) {
+    state.movieName = '';
+    state.votingStatus = '';
+    state.voteStatus = '';
+    state.startSeconds = '';
+    state.withdrawStatus = '';
+    state.time = '';
+    state.endTime = '';
+    state.myBids = 0;
+    state.startDays = '';
+    state.startHours = '';
+    state.startMinutes = '';
+    state.startSeconds = '';
+    state.votes = [];
+    state.balance = '';
+    state.account = '';
+    state.owner = '';
+    state.newest_vote_hash = '';
+  },
 };
