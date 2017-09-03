@@ -16,13 +16,13 @@
         <form @submit.prevent='startHandler'>
           <h3>Vote period ends in</h3>
           <label for='startDays'>Days: </label>
-          <input type='number' id='startDays' placeholder='1' :value.number='startDays' @input='updateStartDays'></input>
+          <input type='number' id='startDays' placeholder='1' v-model.number='startDays'></input>
           <label for='startHours'>Hours: </label>
-          <input type='number' id='startHours' placeholder='1' :value='startHours' @input='updateStartHours'></input>
+          <input type='number' id='startHours' placeholder='1' v-model.number='startHours'></input>
           <label for='startMinutes'>Minutes: </label>
-          <input type='number' id='startMinutes' placeholder='1' :value='startMinutes' @input='updateStartMinutes'></input>
+          <input type='number' id='startMinutes' placeholder='1' v-model.number='startMinutes'></input>
           <label for='startSeconds'>Seconds: </label>
-          <input type='number' id='startSeconds' placeholder='1' :value='startSeconds' @input='updateStartSeconds'></input>
+          <input type='number' id='startSeconds' placeholder='1' v-model.number='startSeconds'></input>
           <button id='startBtn' type='submit'>Start Voting Round</button>
         </form>
         <p id='startStatus'>{{ startStatus }}</p>
@@ -33,7 +33,7 @@
 
         <form @submit.prevent='voteHandler'>
           <label for='vote'>Vote on movie: </label>
-          <input type='text' id='vote' placeholder='The Matrix' :value='movieName' @input='updateMovieName'></input>
+          <input type='text' id='vote' placeholder='The Matrix' v-model='movieName'></input>
           <button id='sendBtn' type='submit'>Vote</button>
         </form>
         <p id='voteStatus'>{{ voteStatus }}</p>
@@ -69,6 +69,47 @@ export default {
     this.$store.dispatch('watchTime');
   },
   computed: {
+    movieName: {
+      get() {
+        return this.$store.state.movieName;
+      },
+      set(value) {
+        this.$store.commit(types.UPDATE_MOVIENAME, value);
+      },
+    },
+    startDays: {
+      get() {
+        return this.$store.state.startDays;
+      },
+      set(value) {
+        this.$store.commit(types.UPDATE_STARTDAYS, value);
+      },
+    },
+    startHours: {
+      get() {
+        return this.$store.state.startHours;
+      },
+      set(value) {
+        this.$store.commit(types.UPDATE_STARTHOURS, value);
+      },
+    },
+    startMinutes: {
+      get() {
+        return this.$store.state.startMinutes;
+      },
+      set(value) {
+        this.$store.commit(types.UPDATE_STARTMINUTES, value);
+      },
+    },
+    startSeconds: {
+      get() {
+        return this.$store.state.startSeconds;
+      },
+      set(value) {
+        this.$store.commit(types.UPDATE_STARTSECONDS, value);
+      },
+    },
+
     ...mapGetters({
       account: 'account',
       balance: 'balance',
@@ -79,11 +120,6 @@ export default {
       endTime: 'endTime',
 
       time: 'time',
-      startDays: 'startDays',
-      startHours: 'startHours',
-      startMinutes: 'startMinutes',
-      startSeconds: 'startSeconds',
-      movieName: 'movieName',
 
       votingStatus: 'votingStatus',
       startStatus: 'startStatus',
@@ -129,22 +165,6 @@ export default {
     },
   },
   methods: {
-    updateStartDays(e) {
-      this.$store.commit(types.UPDATE_STARTDAYS, e.target.value ? parseInt(e.target.value, 10) : '');
-    },
-    updateStartHours(e) {
-      this.$store.commit(types.UPDATE_STARTHOURS, e.target.value ? parseInt(e.target.value, 10) : '');
-    },
-    updateStartMinutes(e) {
-      this.$store.commit(types.UPDATE_STARTMINUTES, e.target.value ? parseInt(e.target.value, 10) : '');
-    },
-    updateStartSeconds(e) {
-      this.$store.commit(types.UPDATE_STARTSECONDS, e.target.value ? parseInt(e.target.value, 10) : '');
-    },
-    updateMovieName(e) {
-      this.$store.commit(types.UPDATE_MOVIENAME, e.target.value);
-    },
-
     voteHandler() {
       if (this.movieName) {
         this.$store.dispatch('vote');
