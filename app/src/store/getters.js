@@ -18,4 +18,8 @@ export default {
   startStatus: state => state.startStatus,
   voteStatus: state => state.voteStatus,
   withdrawStatus: state => state.withdrawStatus,
+
+  roundNotStarted: state => state.votingStatus === 0,
+  roundStarted: state => state.votingStatus === 1,
+  roundEnded: state => state.votingStatus === 2,
 };
