@@ -1,5 +1,7 @@
 # TopSciFiVoter
 
+![License](https://img.shields.io/github/license/rmi7/topscifivoter.svg?style=flat-square)
+
 > Dapp to vote on your Top SciFi movies
 
 ## Prerequisites
